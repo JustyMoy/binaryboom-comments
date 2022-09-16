@@ -12,19 +12,22 @@ module.exports = {
         console.log("Comment has been added!");
         res.redirect("/post/"+req.params.id); //follow route go back to server js to start
       } catch (err) {
-        console.log(err);
+        console.log(err); 
       }
     },
     deleteComment: async (req, res) => {
       try {
         // Find comment by id
         console.log(req.params.id)
-        let comment = await Comment.findById({ _id: req.params.id });
-        await Comment.remove({ _id: req.params.id });
+        console.log('we\'re in the delet comment bit')
+        let comment = await Comment.findById(req.params.id); //this finds the comment id
+        console.log(comment)
+        await Comment.findOneAndDelete({ _id: req.params.id });
         console.log("Deleted Comment");
-        res.redirect("/post/"+comment.post); //
+        res.redirect(`/post/${comment.post}`);
       } catch (err) {
-        res.redirect("/post/"+comment.post);
+        console.log(err)
+        // res.redirect("/post/"+comment.post);
       }
     },
   };

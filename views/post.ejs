@@ -36,17 +36,26 @@
         </div>
         <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
       </form>
+
     </div>
     <ul>
       <% for(var i=0; i<comments.length; i++) {%>
-        <%/* <!--get posts from our server db pulling from our controller-->
-                  <!--controller works with view, view doesnt communicate with others--> */%>
 
         <li class="col-6 justify-content-between mt-5">
           <%= comments[i].comment%>
-        </li>
- 
-      <% } %>
+          <%if(post.user == user.id){ %>
+
+      <form
+        action="/comment/deleteComment/<%= comments[i]._id %>?_method=DELETE"
+        method="POST"
+        class="col-3"
+      >
+      <button class="btn btn-primary fa fa-trash" type="submit"></button>
+      </form>
+      <%}%>
+    </li>
+    <% } %>
+      
     </ul>
     <div class="col-6 mt-5">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
