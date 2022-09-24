@@ -59,7 +59,9 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 app.use("/comment", commentRoutes);
+//delete and rewrite comments route/addtion
 
+//adding users
 
 //Server Running
 app.listen(process.env.PORT, () => {
